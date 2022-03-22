@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.Scanner;
 
 public class Db_requestGet extends Db_connection_setting {
 
@@ -47,14 +48,54 @@ public class Db_requestGet extends Db_connection_setting {
 
 
     public void chk_login(String username, String password) {
+        int i=0;
+       while(true) {
+           i++;
         username = addQuotes(username);
         password = addQuotes(password);
         //System.out.println("con apici "+username+" "+password); -->TEST
 
-        if (((dbSearch("username", "login", "username", username)) && (dbSearch("password", "login", "password", password))) == true) {
-            System.out.println("LOGIN OK");
-        } else {
-            System.out.println("LOGIN FAIL");
+            if (((dbSearch("username", "login", "username", username)) && (dbSearch("password", "login", "password", password))) == true) {
+                System.out.println("LOGIN OK");
+                return;
+            } else {
+                if(i>0) {
+                    System.out.println("username o password errati ritenta");
+                }else{
+                    System.out.println("Benvenuto, inserisci la username e la password appena creata");
+                    i=1;  //TEST
+                }
+                Scanner sc=new Scanner(System.in);
+                System.out.print("Inserisci username: ");
+                username = sc.nextLine();
+                System.out.print("Inserisci password: ");
+                password = sc.nextLine();
+
+                if((i%2==0)&& (i>0)){
+                    System.out.println("Vuoi registrarti?(yes or no)");
+                    username= sc.nextLine();
+                    if(username.startsWith("y")){
+                        Db_requestSet registration=new Db_requestSet();
+                        System.out.println("Inserisci nome: ");
+                        registration.setName(sc.nextLine());
+                        System.out.println("Inserisci cognome: ");
+                        registration.setSurname(sc.nextLine());
+                        System.out.println("Inserisci username: ");
+                        registration.setUsername(sc.nextLine());
+                        System.out.println("Inserisci password: ");
+                        registration.setPassword(sc.nextLine());
+                        System.out.println("Conferma password: ");
+                        registration.setConferm_psw(sc.nextLine());
+
+
+
+
+                        if (registration.newUser()== true) {
+                            i=-2;
+                        }
+                    }
+                }
+            }
         }
     }
 }
