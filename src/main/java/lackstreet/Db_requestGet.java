@@ -1,9 +1,6 @@
 package lackstreet;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.Scanner;
 
 public class Db_requestGet extends Db_connection_setting {
@@ -49,6 +46,7 @@ public class Db_requestGet extends Db_connection_setting {
 
     public void chk_login(String username, String password) {
         int i=0;
+        String chat;
        while(true) {
            i++;
         username = addQuotes(username);
@@ -73,8 +71,8 @@ public class Db_requestGet extends Db_connection_setting {
 
                 if((i%2==0)&& (i>0)){
                     System.out.println("Vuoi registrarti?(yes or no)");
-                    username= sc.nextLine();
-                    if(username.startsWith("y")){
+                    chat= sc.nextLine();
+                    if(chat.startsWith("y")){
                         Db_requestSet registration=new Db_requestSet();
                         System.out.println("Inserisci nome: ");
                         registration.setName(sc.nextLine());
@@ -92,6 +90,19 @@ public class Db_requestGet extends Db_connection_setting {
 
                         if (registration.newUser()== true) {
                             i=-2;
+                        }
+                    }else{
+                        System.out.println("Hai dimenticato username o password?");
+                        chat=sc.nextLine();
+                        if(chat.startsWith("y")){
+                            System.out.println("vuoi recuperare l'username?");
+                            chat=sc.nextLine();
+                            if(chat.startsWith("y")){
+                                System.out.println("Inserisci la tua mail:");
+                                chat=sc.nextLine();
+                                METODO_VERIFICA_MAIL_DA CREARE;
+                                VERIFICA MAIL NEL REGISTRO DATABASE SE NON PRESENTE ERRORE
+                            }
                         }
                     }
                 }

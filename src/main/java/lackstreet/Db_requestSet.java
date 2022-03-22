@@ -33,6 +33,13 @@ public class Db_requestSet {
             System.out.println("le due password non concidono");
             return false;
         }
+        if(password.length()<6){
+            System.out.println("Password troppo corta");
+            return false;
+        }
+        if(password.contentEquals(name)){
+            System.out.println("La password deve essere diversa dal nome");
+        }
         return true;
     }
 
