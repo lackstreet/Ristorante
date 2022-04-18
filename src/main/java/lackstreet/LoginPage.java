@@ -1,27 +1,31 @@
 package lackstreet;
 
 import javax.swing.*;
+import javax.swing.border.*;
 import javax.swing.text.View;
 import java.awt.*;
 import java.util.jar.JarEntry;
 
-public class LoginPage extends JFrame{
+public class LoginPage extends JFrame {
 
-    private final JButton LoginBt;
-    private final JTextField usernameTF, passwordTF;
+    final JButton btLogin;
+    final JTextField tfUsername, tfPassword;
 
-    public LoginPage(){
+
+
+    public LoginPage() {
         super();
-        usernameTF =new JTextField("Username");
-        passwordTF =new JTextField("password");
-        LoginBt=new JButton("Login");
+        tfUsername = new JTextField("Username");
+        tfPassword = new JTextField("password");
+        btLogin = new JButton("Login");
 
-        JFrame root =new JFrame("Login");
+        JFrame root = new JFrame("Login");
 
-        JPanel mainPan =new JPanel();
-        mainPan.add(usernameTF);
-        mainPan.add(passwordTF);
-        mainPan.add(LoginBt);
+        JPanel mainPan = new JPanel();
+        //set the border layout
+        mainPan.add(tfUsername);
+        mainPan.add(tfPassword);
+        mainPan.add(btLogin);
 
         root.setContentPane(mainPan);
         root.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -34,5 +38,7 @@ public class LoginPage extends JFrame{
 
     private void createUIComponents() {
         // TODO: place custom component creation code here
+
+
     }
 }
