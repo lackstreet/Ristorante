@@ -1,13 +1,17 @@
 package lackstreet;
 
+import javax.swing.*;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
 
+        //new login page
+        SwingUtilities.invokeLater(LoginPage::new);
+
         Db_connection_setting start = new Db_connection_setting();
 
-        start.setServer("jdbc:sqlserver://LACK\\SQLEXPRESS;");
+        start.setServer("jdbc:sqlserver://DAVIDE-PC\\SQLEXPRESS;");
         start.setProprieties("database=db_rst;encrypt=false;loginTimeout=10;");
         start.setUser("guest");
         start.setPassword("guest");

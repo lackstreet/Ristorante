@@ -5,7 +5,14 @@ import java.util.Scanner;
 
 public class Db_requestGet extends Db_connection_setting {
 
-
+    /**
+     *
+     * @param select_This_Column Seleziona la colonna
+     * @param from_Table
+     * @param whereCondition
+     * @param where_IslikeThis
+     * @return
+     */
     public boolean dbSearch(String select_This_Column, String from_Table, String whereCondition, String where_IslikeThis) {
         ResultSet resultSet = null; //prova connesione
 
@@ -34,7 +41,11 @@ public class Db_requestGet extends Db_connection_setting {
         return false;
     }
 
-
+    /**
+     * metodo per aggiungere i qoutes alla stringa ottenuta in modo che venga passata all'SQL formattata correttamente
+     * @param word stringa da convertire
+     * @return ritorna la stringa con i quotes
+     */
     public String addQuotes(String word) {
         StringBuilder query = new StringBuilder();
         query.append("'");
@@ -47,11 +58,11 @@ public class Db_requestGet extends Db_connection_setting {
     public void chk_login(String username, String password) {
         int i=0;
         String chat;
-       while(true) {
-           i++;
-        username = addQuotes(username);
-        password = addQuotes(password);
-        //System.out.println("con apici "+username+" "+password); -->TEST
+        while(true) {
+            i++;
+            username = addQuotes(username);
+            password = addQuotes(password);
+            //System.out.println("con apici "+username+" "+password); -->TEST
 
             if (((dbSearch("username", "login", "username", username)) && (dbSearch("password", "login", "password", password))) == true) {
                 System.out.println("LOGIN OK");
@@ -69,14 +80,19 @@ public class Db_requestGet extends Db_connection_setting {
                 System.out.print("Inserisci password: ");
                 password = sc.nextLine();
 
+                // ogni due volte che provi a loggarti con insuccesso chiediamo se vuole registrarsi
                 if((i%2==0)&& (i>0)){
                     System.out.println("Vuoi registrarti?(yes or no)");
                     chat= sc.nextLine();
                     if(chat.startsWith("y")){
-                        Db_requestSet registration=new Db_requestSet();
+                        Db_requestSet registration = new Db_requestSet();
                         System.out.println("Inserisci nome: ");
                         registration.setName(sc.nextLine());
                         System.out.println("Inserisci cognome: ");
+                        registration.setSurname(sc.nextLine());
+                        System.out.println("Inserisci data di nascita: ");
+                        registration.setSurname(sc.nextLine());
+                        System.out.println("Inserisci email: ");
                         registration.setSurname(sc.nextLine());
                         System.out.println("Inserisci username: ");
                         registration.setUsername(sc.nextLine());
@@ -86,22 +102,21 @@ public class Db_requestGet extends Db_connection_setting {
                         registration.setConferm_psw(sc.nextLine());
 
 
-
-
-                        if (registration.newUser()== true) {
+                        if (registration.newUser()) {
                             i=-2;
                         }
                     }else{
                         System.out.println("Hai dimenticato username o password?");
                         chat=sc.nextLine();
-                        if(chat.startsWith("y")){
+                        //da sistemare le condizioni per comprendere tutti i casi (yes, Yes, Si , si, ecc.)
+                        if(chat.startsWith("y") || chat.startsWith("s")){
                             System.out.println("vuoi recuperare l'username?");
                             chat=sc.nextLine();
                             if(chat.startsWith("y")){
                                 System.out.println("Inserisci la tua mail:");
                                 chat=sc.nextLine();
-                                METODO_VERIFICA_MAIL_DA CREARE;
-                                VERIFICA MAIL NEL REGISTRO DATABASE SE NON PRESENTE ERRORE
+                                //METODO_VERIFICA_MAIL_DA CREARE;
+                                //VERIFICA MAIL NEL REGISTRO DATABASE SE NON PRESENTE ERRORE
                             }
                         }
                     }
