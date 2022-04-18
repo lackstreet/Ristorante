@@ -1,40 +1,56 @@
 package lackstreet;
 
 import javax.swing.*;
-import javax.swing.border.*;
-import javax.swing.text.View;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.jar.JarEntry;
 
 public class LoginPage extends JFrame {
 
-    final JButton btLogin;
-    final JTextField tfUsername, tfPassword;
+        private final Container container = getContentPane();
+        private final JLabel userLabel = new JLabel("USERNAME");
+        private final JLabel passwordLabel = new JLabel("PASSWORD");
+        private final JLabel signupLabel = new JLabel("Se non sei ancora registrato, clicca qui");
+        private final JTextField userTextField = new JTextField();
+        private final JPasswordField passwordField = new JPasswordField();
+        private final JButton loginButton = new JButton("LOGIN");
+        private final JCheckBox showPassword = new JCheckBox("Show Password");
 
+        public LoginPage() {
+            setLayoutManager();
+            setLocationAndSize();
+            addComponentsToContainer();
 
+            /* JFrame methods called */
+            setTitle("Login Form");
+            setVisible(true);
+            setBounds(10, 10, 370, 600);
+            setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+            setResizable(true);
 
-    public LoginPage() {
-        super();
-        tfUsername = new JTextField("Username");
-        tfPassword = new JTextField("password");
-        btLogin = new JButton("Login");
-
-        JFrame root = new JFrame("Login");
-
-        JPanel mainPan = new JPanel();
-        //set the border layout
-        mainPan.add(tfUsername);
-        mainPan.add(tfPassword);
-        mainPan.add(btLogin);
-
-        root.setContentPane(mainPan);
-        root.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        root.setSize(300, 150);
-        root.setResizable(true);
-        root.setVisible(true);
-
-
-    }
+        }
+        public void setLayoutManager() {
+            container.setLayout(null);
+        }
+        public void setLocationAndSize() {
+            userLabel.setBounds(50, 150, 100, 30);
+            passwordLabel.setBounds(50, 220, 100, 30);
+            userTextField.setBounds(150, 150, 150, 30);
+            passwordField.setBounds(150, 220, 150, 30);
+            showPassword.setBounds(150, 250, 150, 30);
+            signupLabel.setBounds(50, 250, 100, 30); //non si adatta bene alla visuale
+            loginButton.setBounds(50, 300, 100, 30);
+        }
+        public void addComponentsToContainer() {
+            container.add(userLabel);
+            container.add(passwordLabel);
+            container.add(userTextField);
+            container.add(passwordField);
+            container.add(showPassword);
+            container.add(signupLabel);
+            container.add(loginButton);
+        }
 
     private void createUIComponents() {
         // TODO: place custom component creation code here
