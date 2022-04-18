@@ -9,7 +9,7 @@ public class Main {
         //new login page
         SwingUtilities.invokeLater(LoginPage::new);
 
-        Db_connection_setting start = new Db_connection_setting();
+        DbConnectionSettings start = new DbConnectionSettings();
 
         start.setServer("jdbc:sqlserver://DAVIDE-PC\\SQLEXPRESS;");
         start.setProprieties("database=db_rst;encrypt=false;loginTimeout=10;");

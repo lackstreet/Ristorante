@@ -1,7 +1,7 @@
 package lackstreet;
 
 
-public class Db_connection_setting {
+public class DbConnectionSettings {
 
 
     public void setServer(String server) {
@@ -41,5 +41,13 @@ public class Db_connection_setting {
     private static String user;
     private static String password;
 
+
+    public String addQuotes(String word) {
+        StringBuilder query = new StringBuilder();
+        query.append("'");
+        query.append(word);
+        query.append("'");
+        return query.toString();
+    }
 
 }

@@ -3,7 +3,7 @@ package lackstreet;
 import java.sql.*;
 import java.util.Scanner;
 
-public class Db_requestGet extends Db_connection_setting {
+public class Db_requestGet extends DbConnectionSettings {
 
     /**
      *

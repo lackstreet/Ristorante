@@ -2,11 +2,11 @@
 plugins {
     java
     application
+
 }
+
 application{
     mainClass.set("lackstreet.Main")
-
-
 }
 
 group = "org.lackstreet"
