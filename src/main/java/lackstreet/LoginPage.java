@@ -30,10 +30,10 @@ public class LoginPage extends JFrame implements MouseListener {
     private final JPanel eastPanel = new JPanel();
 
     public LoginPage() {
+        super();
 
         addComponentsToPanel();
         setLayoutManager();
-        setLocationAndSize();
 
         clickLabel.addMouseListener(this);
 
@@ -68,13 +68,28 @@ public class LoginPage extends JFrame implements MouseListener {
 
     }
 
-    public void setLocationAndSize() {
-
-    }
 
     /**
      * Imposto tutte le misure per visualizzare correttamente i componenti all'intero della schermata di login
      * utilizzando due GridBagLayout e un BorderLayout
+     *
+     * Per i GridBagLayout ogni componente che viene aggiunto deve essere accompagnato da un GridBagConstrain in
+     * cui si impostano tutti i settaggi che dovrà rispettare tale componente all'interno della griglia.
+     * Noi utilizzeremo un singolo GridBagConstrain che verrà modificato di volta in volta in base al componente
+     * che staremo aggiungendo.
+     * Questo per rendere il codice più snello e leggibile anche se bisogna bisogna prestare maggiore attenzione nel
+     * controllare che i parametri abbiano i giusti valori. Per ovviare a questa problematica verranno riassegnati tutti
+     * i valori dei parametri anche se sono già impostati correttamente
+     * @gridx indica la colonna
+     * @gridy indica la linea
+     * @weightx è un valore compreso tra 0 e 1.0 che indica quanto spazio orizzonale deve occupare tale
+     * componente in relazione con gli altri (ad esempio la signup label in proporzione occupa tre
+     * volte lo spazio di click label a livello di colonne)
+     * @weighty stessa cosa di weightx ma riguardo lo spazio verticale
+     * @anchor indica il punto in cui deve essere posizionato il componente all'interno della cella in cui
+     * è contenuto nel caso in cui la sua area di display sia inferiore a quella della cella(es in alto a sinistra, in alto al centro, ecc)
+     * @insets modifica, rispetto alla posizione di default, il numero di pixel del bordo. Noi la utilizziamo per
+     * distanziare i componenti tra di loro
      */
     public void addComponentsToPanel() {
 
@@ -210,9 +225,4 @@ public class LoginPage extends JFrame implements MouseListener {
 
     }
 
-    private void createUIComponents() {
-        // TODO: place custom component creation code here
-
-
-    }
 }
