@@ -101,9 +101,9 @@ public class LoginPage extends JFrame implements MouseListener {
         regConstrain.weightx = 0.03;
         regConstrain.weighty = 0;
         regConstrain.anchor = GridBagConstraints.LINE_END;
-        regConstrain.insets = new Insets(0, 0, 0, 0);
+        regConstrain.insets = new Insets(0, 0, 0, 3);
 
-        fullLogPanel.add(signupLabel, regConstrain);
+        regLogPanel.add(signupLabel, regConstrain);
 
         //set clickLabel position
         regConstrain.gridx = 1;
@@ -113,7 +113,7 @@ public class LoginPage extends JFrame implements MouseListener {
         regConstrain.anchor = GridBagConstraints.LINE_START;
         regConstrain.insets = new Insets(0, 0, 0, 0);
 
-        fullLogPanel.add(clickLabel, regConstrain);
+        regLogPanel.add(clickLabel, regConstrain);
 
         GridBagConstraints Constrain = new GridBagConstraints();
 
@@ -189,10 +189,6 @@ public class LoginPage extends JFrame implements MouseListener {
         Constrain.insets = new Insets(10, 0, 0, 0);
 
         fullLogPanel.add(loginButton, Constrain);
-
-
-        regLogPanel.add(signupLabel);
-        regLogPanel.add(clickLabel);
 
         mainLogPanel.add(fullLogPanel, BorderLayout.CENTER);
         mainLogPanel.add(northPanel, BorderLayout.NORTH);

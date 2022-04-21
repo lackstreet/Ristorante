@@ -7,7 +7,8 @@ public class Main {
     public static void main(String[] args) {
 
         //new login page
-        SwingUtilities.invokeLater(LoginPage::new);
+        //SwingUtilities.invokeLater(LoginPage::new);
+        SwingUtilities.invokeLater(RegistrationPage::new);
 
         DbConnectionSettings start = new DbConnectionSettings();
 
