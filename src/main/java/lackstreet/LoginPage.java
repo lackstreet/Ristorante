@@ -3,6 +3,8 @@ package lackstreet;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class LoginPage extends JFrame implements MouseListener {
@@ -28,6 +30,10 @@ public class LoginPage extends JFrame implements MouseListener {
     private final JPanel southPanel = new JPanel();
     private final JPanel westPanel = new JPanel();
     private final JPanel eastPanel = new JPanel();
+    private final JFrame root =new JFrame();
+
+
+
 
     public LoginPage() {
         super();
@@ -38,12 +44,15 @@ public class LoginPage extends JFrame implements MouseListener {
         clickLabel.addMouseListener(this);
 
         /* JFrame methods called */
-        setContentPane(mainLogPanel);
-        setTitle("Login Form");
-        setSize(400, 500);
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        setResizable(true);
-        setVisible(true);
+        root.setContentPane(mainLogPanel);
+        root.setTitle("Login Form");
+        root.setSize(400, 500);
+        root.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        root.setResizable(true);
+        root.setVisible(true);
+
+        loginButton.addActionListener(new goToRegisterPage());
+
 
     }
 
@@ -221,4 +230,21 @@ public class LoginPage extends JFrame implements MouseListener {
 
     }
 
+
+      class  goToRegisterPage implements ActionListener {
+        public void actionPerformed(ActionEvent e){
+            root.dispose();
+            SwingUtilities.invokeLater(RegistrationPage::new);
+        }
+    }
+
+
+
+
+
+
+
+
 }
+
+

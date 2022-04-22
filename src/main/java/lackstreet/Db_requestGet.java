@@ -41,19 +41,6 @@ public class Db_requestGet extends DbConnectionSettings {
         return false;
     }
 
-    /**
-     * metodo per aggiungere i qoutes alla stringa ottenuta in modo che venga passata all'SQL formattata correttamente
-     * @param word stringa da convertire
-     * @return ritorna la stringa con i quotes
-     */
-    public String addQuotes(String word) {
-        StringBuilder query = new StringBuilder();
-        query.append("'");
-        query.append(word);
-        query.append("'");
-        return query.toString();
-    }
-
 
     public void chk_login(String username, String password) {
         int i=0;

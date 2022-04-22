@@ -42,6 +42,13 @@ public class DbConnectionSettings {
     private static String password;
 
 
+    /**
+     * metodo per aggiungere i qoutes alla stringa ottenuta in modo che venga passata all'SQL formattata correttamente
+     * @param word stringa da convertire
+     * @return ritorna la stringa con i quotes
+     */
+
+
     public String addQuotes(String word) {
         StringBuilder query = new StringBuilder();
         query.append("'");
