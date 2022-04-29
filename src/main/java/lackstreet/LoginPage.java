@@ -31,6 +31,7 @@ public class LoginPage extends JFrame{
     private final JPanel southPanel = new JPanel();
     private final JPanel westPanel = new JPanel();
     private final JPanel eastPanel = new JPanel();
+
     private final JFrame root =new JFrame();
 
 
@@ -46,12 +47,13 @@ public class LoginPage extends JFrame{
 
             @Override
             public void mouseClicked(MouseEvent e) {
-                //TODO aprire la pagina di registrazione (RegistrationPage)
-                super.mouseClicked(e);
+                SwingUtilities.invokeLater(RegistrationPage::new);
+                root.setVisible(false);
             }
 
             @Override
             public void mouseEntered(MouseEvent e) {
+                super.mouseEntered(e);
                 clickLabel.setText("<html><a href=''>clicca qui</a></html>");
             }
 
@@ -65,7 +67,8 @@ public class LoginPage extends JFrame{
 
             @Override
             public void mouseClicked(MouseEvent e) {
-                //TODO aprire la pagina che ti fa selezionare la mail a cui inviare la password
+                //TODO aprire la pagina che ti fa selezionare la mail a cui inviare la password e chidere quella di login (LoginPage)
+
                 super.mouseClicked(e);
             }
 
