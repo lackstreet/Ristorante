@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class LoginPage extends JFrame implements MouseListener {
+public class LoginPage extends JFrame{
 
     private final JPanel mainLogPanel = new JPanel(new BorderLayout());
     private final JPanel regLogPanel = new JPanel(new GridBagLayout());
@@ -15,6 +15,7 @@ public class LoginPage extends JFrame implements MouseListener {
 
     private final JLabel userLabel = new JLabel("USERNAME");
     private final JLabel passwordLabel = new JLabel("PASSWORD");
+    private final JLabel forgetPswLabel = new JLabel("Password dimenticata?");
     private final JLabel signupLabel = new JLabel("Se non sei ancora registrato,");
     private final JLabel clickLabel = new JLabel("clicca qui");
 
@@ -41,18 +42,61 @@ public class LoginPage extends JFrame implements MouseListener {
         addComponentsToPanel();
         setLayoutManager();
 
-        clickLabel.addMouseListener(this);
+        clickLabel.addMouseListener(new MouseAdapter() {
+
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                //TODO aprire la pagina di registrazione (RegistrationPage)
+                super.mouseClicked(e);
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                clickLabel.setText("<html><a href=''>clicca qui</a></html>");
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                clickLabel.setText("clicca qui");
+            }
+        });
+
+        forgetPswLabel.addMouseListener(new MouseAdapter() {
+
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                //TODO aprire la pagina che ti fa selezionare la mail a cui inviare la password
+                super.mouseClicked(e);
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                forgetPswLabel.setText("<html><a href=''>Password dimenticata?</a></html>");
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                forgetPswLabel.setText("Password dimenticata?");
+            }
+        });
+
+        showPassword.addItemListener(e -> {
+            if (e.getStateChange() == ItemEvent.SELECTED) {
+                passwordField.setEchoChar((char) 0);
+            } else {
+                passwordField.setEchoChar('\u2022');
+            }
+        });
 
         /* JFrame methods called */
         root.setContentPane(mainLogPanel);
         root.setTitle("Login Form");
         root.setSize(400, 500);
         root.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        root.setResizable(true);
+        root.setResizable(false);
         root.setVisible(true);
 
         loginButton.addActionListener(new goToRegisterPage());
-
 
     }
 
@@ -74,6 +118,10 @@ public class LoginPage extends JFrame implements MouseListener {
         clickLabel.setFont(new Font("sansSerif", Font.BOLD, 11));
         clickLabel.setForeground(new Color(0x447dc6));
         clickLabel.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+
+        forgetPswLabel.setFont(new Font("sansSerif", Font.BOLD, 11));
+        forgetPswLabel.setForeground(new Color(0x447dc6));
+        forgetPswLabel.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 
     }
 
@@ -104,6 +152,9 @@ public class LoginPage extends JFrame implements MouseListener {
 
         GridBagConstraints regConstrain = new GridBagConstraints();
 
+        /**
+         * regLogPanel
+         */
         //set sigupLabel position
         regConstrain.gridx = 0;
         regConstrain.gridy = 0;
@@ -125,6 +176,10 @@ public class LoginPage extends JFrame implements MouseListener {
         regLogPanel.add(clickLabel, regConstrain);
 
         GridBagConstraints Constrain = new GridBagConstraints();
+
+        /**
+         * fullLogPanel
+         */
 
         //set userLabel position
         Constrain.gridx = 0;
@@ -177,9 +232,20 @@ public class LoginPage extends JFrame implements MouseListener {
 
         fullLogPanel.add(showPassword, Constrain);
 
+        //set forgetPswLabel position
+        Constrain.gridx = 1;
+        Constrain.gridy = 3;
+        Constrain.weightx = 0.01;
+        Constrain.weighty = 0.01;
+        Constrain.gridwidth = 1;
+        Constrain.anchor = GridBagConstraints.FIRST_LINE_START;
+        Constrain.insets = new Insets(0, 3, 0, 0);
+
+        fullLogPanel.add(forgetPswLabel, Constrain);
+
         //set regLogPanel position
         Constrain.gridx = 0;
-        Constrain.gridy = 3;
+        Constrain.gridy = 4;
         Constrain.weightx = 0.01;
         Constrain.weighty = 0.3;
         Constrain.gridwidth = 2;
@@ -190,7 +256,7 @@ public class LoginPage extends JFrame implements MouseListener {
 
         //set LoginButton position
         Constrain.gridx = 0;
-        Constrain.gridy = 4;
+        Constrain.gridy = 5;
         Constrain.weightx = 0;
         Constrain.weighty = 0.6;
         Constrain.gridwidth = 2;
@@ -207,44 +273,12 @@ public class LoginPage extends JFrame implements MouseListener {
 
     }
 
-    @Override
-    public void mouseClicked(MouseEvent e) {
-    }
-
-    @Override
-    public void mousePressed(MouseEvent e) {
-    }
-
-    @Override
-    public void mouseEntered(MouseEvent e) {
-        clickLabel.setText("<html><a href=''>clicca qui</a></html>");
-    }
-
-    @Override
-    public void mouseExited(MouseEvent e) {
-        clickLabel.setText("clicca qui");
-    }
-
-    @Override
-    public void mouseReleased(MouseEvent e) {
-
-    }
-
-
-      class  goToRegisterPage implements ActionListener {
+    class  goToRegisterPage implements ActionListener {
         public void actionPerformed(ActionEvent e){
             root.dispose();
             SwingUtilities.invokeLater(RegistrationPage::new);
         }
     }
-
-
-
-
-
-
-
-
 }
 
 
