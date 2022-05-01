@@ -12,7 +12,7 @@ public class Main {
 
         DbConnectionSettings start = new DbConnectionSettings();
 
-        start.setServer("jdbc:sqlserver://DAVIDE-PC\\SQLEXPRESS;");
+        start.setServer("jdbc:sqlserver://LACK\\SQLEXPRESS;");
         start.setProprieties("database=db_rst;encrypt=false;loginTimeout=10;");
         start.setUser("guest");
         start.setPassword("guest");

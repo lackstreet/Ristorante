@@ -23,13 +23,20 @@ tasks.register("Db_") {
     }
 
 }
+
+tasks.register("FireBase") {
+    doFirst {
+        Class.forName("lackstreet/FirebaseConnectionSettings")
+    }
+
+}
 tasks.named<JavaExec>("run") {
     standardInput = System.`in`
 }
 
 dependencies{
     implementation("com.microsoft.sqlserver:mssql-jdbc:10.2.0.jre11")
-
+    implementation("com.google.firebase:firebase-admin:8.1.0")
 }
 
 
