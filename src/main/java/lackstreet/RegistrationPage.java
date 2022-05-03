@@ -6,7 +6,6 @@ import java.awt.*;
 public class RegistrationPage extends JFrame {
 
     private final JPanel mainRegPanel = new JPanel(new BorderLayout());
-    private final JPanel regRegPanel = new JPanel(new GridBagLayout());
     private final JPanel fullRegPanel = new JPanel(new GridBagLayout());
 
     //empty panel to spacing and centering log option
