@@ -3,9 +3,6 @@ package lackstreet;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.util.ArrayList;
-import java.util.List;
-
 
 public class LoginPage extends JFrame{
 
@@ -32,7 +29,7 @@ public class LoginPage extends JFrame{
     private final JPanel westPanel = new JPanel();
     private final JPanel eastPanel = new JPanel();
 
-    private final JFrame root =new JFrame();
+    private final JFrame mainFrame =new JFrame();
 
 
 
@@ -48,7 +45,7 @@ public class LoginPage extends JFrame{
             @Override
             public void mouseClicked(MouseEvent e) {
                 SwingUtilities.invokeLater(RegistrationPage::new);
-                root.setVisible(false);
+                mainFrame.setVisible(false);
             }
 
             @Override
@@ -63,13 +60,13 @@ public class LoginPage extends JFrame{
             }
         });
 
+
         forgetPswLabel.addMouseListener(new MouseAdapter() {
 
             @Override
             public void mouseClicked(MouseEvent e) {
-                //TODO aprire la pagina che ti fa selezionare la mail a cui inviare la password e chidere quella di login (LoginPage)
-
-                super.mouseClicked(e);
+                SwingUtilities.invokeLater(ForgottenPage::new);
+                mainFrame.setVisible(false);
             }
 
             @Override
@@ -91,18 +88,27 @@ public class LoginPage extends JFrame{
             }
         });
 
-        /* JFrame methods called */
-        root.setContentPane(mainLogPanel);
-        root.setTitle("Login Form");
-        root.setSize(400, 500);
-        root.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        root.setResizable(false);
-        root.setVisible(true);
+        loginButton.addActionListener(e -> {
+            mainFrame.dispose();
+            //TODO cambiare la registrationPage con la home del sito
+            SwingUtilities.invokeLater(RegistrationPage::new);
+        });
 
-        loginButton.addActionListener(new goToRegisterPage());
+        /* JFrame methods called */
+        mainFrame.setContentPane(mainLogPanel);
+        mainFrame.setTitle("Login Form");
+        mainFrame.setSize(400, 500);
+        mainFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        mainFrame.setResizable(false);
+        mainFrame.setVisible(true);
+
+
 
     }
 
+    /**
+     * Funzione per impostare tutta la parte di abbellimento, dai font alle dimensione dei componenti
+     */
     public void setLayoutManager() {
 
         //set bording page space
@@ -110,12 +116,14 @@ public class LoginPage extends JFrame{
         southPanel.setPreferredSize(new Dimension(500, 100));
         westPanel.setPreferredSize(new Dimension(50, 400));
         eastPanel.setPreferredSize(new Dimension(50, 400));
+
     /*
         northPanel.setBackground(Color.GREEN);
         southPanel.setBackground(Color.YELLOW);
         westPanel.setBackground(Color.red);
         eastPanel.setBackground(Color.blue.brighter());
     */
+
         signupLabel.setFont(new Font("sansSerif", Font.PLAIN, 11));
 
         clickLabel.setFont(new Font("sansSerif", Font.BOLD, 11));
@@ -274,13 +282,6 @@ public class LoginPage extends JFrame{
         mainLogPanel.add(westPanel, BorderLayout.WEST);
         mainLogPanel.add(eastPanel, BorderLayout.EAST);
 
-    }
-
-    class  goToRegisterPage implements ActionListener {
-        public void actionPerformed(ActionEvent e){
-            root.dispose();
-            SwingUtilities.invokeLater(RegistrationPage::new);
-        }
     }
 }
 
