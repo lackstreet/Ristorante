@@ -2,7 +2,7 @@
 **/out
 
 #ignora la cartella .
-.*
+**/checksum
 
 #ignora la cartella build
 **/build
