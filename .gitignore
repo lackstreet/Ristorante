@@ -1,0 +1,8 @@
+#ignora la cartella out
+**/out
+
+#ignora le cartelle che iniziano con .
+**/.*
+
+#ignora la cartella build
+**/build
