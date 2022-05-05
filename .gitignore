@@ -2,10 +2,10 @@
 **/out
 
 #ignora la cartella .gradle
-**/.gradle
+**/\.gradle
 
 #ignora la cartella .idea
-**/.idea
+**/\.idea
 
 #ignora la cartella build
 **/build
