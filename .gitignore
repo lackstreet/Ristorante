@@ -6,3 +6,5 @@
 
 #ignora la cartella build
 **/build
+
+local.properties
